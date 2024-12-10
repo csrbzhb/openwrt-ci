@@ -2,19 +2,17 @@ name: IPQ60XX-24.10_new
 
 on:
   workflow_dispatch:
-    #  schedule:
-    #    - cron: 0 19 * * *
 
 env:
   REPO_URL: https://github.com/csrbzhb/openwrt-6.x.git
   REPO_BRANCH: openwrt-24.10
-  CONFIG_FILE: configs/ipq60xx.config
+  CONFIG_FILE: configs/ipq60xx_packages.config
   DIY_SCRIPT: rubin-script.sh
   CLASH_KERNEL: arm64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: IPQ60XX-24.10
+  FIRMWARE_TAG: IPQ60XX-packages-24.10
   TZ: Asia/Shanghai
 
 jobs:
@@ -156,7 +154,7 @@ jobs:
       with:
         name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
         allowUpdates: true
-        tag: ${{ env.FIRMWARE_TAG }}-R-${{ env.TAG_DATE }} 
+        tag: ${{ env.FIRMWARE_TAG }} 
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
