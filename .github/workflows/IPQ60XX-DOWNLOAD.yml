@@ -131,8 +131,10 @@ jobs:
       if: steps.compile.outputs.status == 'success'
       run: |
         rm -rf packages feeds.buildinfo version.buildinfo
+        mkdir dl
         mv -f $OPENWRT_PATH/dl/* dl
         tar -zcf download.tar.gz dl
+        # tar -zcf - dl | split -b 2G - dl.tar.gz
         echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
 
     - name: Upload Firmware To Artifact(将固件上传到Artifact)
